@@ -1,0 +1,13 @@
+.products {
+  padding: 20px;
+}
+
+.product-card {
+  border: 1px solid lightgray;
+  height: 200px;
+}
+
+.registerform {
+  width: 50%;
+  margin: 0 auto;
+}
