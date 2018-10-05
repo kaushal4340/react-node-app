@@ -9,9 +9,11 @@ class AppRouter extends React.Component {
     return (
       <Router>
         <div>
-          <Link to='/'>Products</Link>
-          &nbsp;&nbsp;&nbsp;
-          <Link to='/addproduct'>Add Product</Link>
+          <nav className='nav'>
+            <span className='nav-link active'><Link to='/'>Products</Link></span>
+            <span className='nav-link'><Link to='/addproduct'>Add Product</Link></span>
+          </nav>
+
           <hr />
 
           <Route exact path='/' component={ProductsContainer} />

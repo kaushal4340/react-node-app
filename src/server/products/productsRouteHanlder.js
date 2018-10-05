@@ -33,6 +33,15 @@ const productsRouteHandler = {
       if (err) res.status(500).json({error: err})
       else res.status(200).json({data: products})
     })
+  },
+
+  update (req, res) {
+    const {productId} = req.params
+    logger.info(`update product by prodct id: ${productId} & ${JSON.stringify(req.body)}`)
+    productsApi.update(productId, req.body, (err, products) => {
+      if (err) res.status(500).json({error: err})
+      else res.status(200).json({data: products})
+    })
   }
 }
 

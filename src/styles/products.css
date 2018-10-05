@@ -2,9 +2,28 @@
   padding: 20px;
 }
 
+.app-link {
+  float: left;
+}
+
+.app-link a {
+  padding: 15px;
+  border: 1px solid lightblue;
+  background: #6c757d;
+  color: white;
+}
+
 .product-card {
-  border: 1px solid lightgray;
+  box-shadow: 1px 2px 7px 3px lightgrey;
   height: 200px;
+  margin-top: 10px;
+  padding: 10px 0;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .registerform {
@@ -15,7 +34,8 @@
 .remove-button {
   position: absolute;
   bottom: 15px;
-  left: 40px;
+  left: 0;
+  right: 0;
 }
 
 .edit-button {

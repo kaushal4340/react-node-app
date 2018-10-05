@@ -15,7 +15,6 @@ class ProductRegister extends React.Component {
       product: [],
       editMode: props.editMode
     }
-
     this.loadData()
   }
 
@@ -33,15 +32,18 @@ class ProductRegister extends React.Component {
   }
 
   submit (model) {
-    Actions.insert(model)
+    if (this.state.editMode) {
+      Actions.update(this.props.productId, model)
+    } else {
+      Actions.insert(model)
+    }
   }
 
   render () {
     let {editMode} = this.props
     let {product} = this.state
-    console.log('product = ', product)
     let productName, price, manufacturer
-    if (editMode && this.state.product) {
+    if (editMode && this.state.product[0]) {
       productName = product[0].productName
       price = product[0].price
       manufacturer = product[0].manufacturer
@@ -57,7 +59,7 @@ class ProductRegister extends React.Component {
           <Label>Manufacturer</Label>
           <Input name='manufacturer' value={manufacturer} type='text' />
           <hr />
-          <Button>SUBMIT</Button>
+          <Button>{(editMode) ? 'UPDATE' : 'SUBMIT'}</Button>
         </Formsy>
       </div>
 

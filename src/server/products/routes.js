@@ -13,5 +13,6 @@ router.route('/removeProduct/:productId')
 
 router.route('/product/:productId')
   .get(productsRouteHandler.read)
+  .patch(productsRouteHandler.update)
 
 module.exports = router
