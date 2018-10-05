@@ -1,21 +1,37 @@
 const ProductsApi = require('./ProductsApi')
-let productsApi = new ProductsApi()
+const logger = require('../Utils/logger')
+let productsApi = new ProductsApi(logger)
 
 const productsRouteHandler = {
   read (req, res) {
-    // let productsApi = new ProductsApi()
-    productsApi.fetch((products) => {
-      console.log('read = ', products)
-      res.send({data: products})
+    const {productId} = req.params
+    productsApi.read(productId, (err, product) => {
+      if (err) res.status(500).json({error: err})
+      else res.status(200).json({data: product})
+    })
+  },
+
+  readAll (req, res) {
+    productsApi.readAll((products) => {
+      logger.info(`fetch all products: ${JSON.stringify(products)}`)
+      res.status(200).json({data: products})
     })
   },
 
   insert (req, res) {
-    // let productsApi = new ProductsApi()
-    console.log('model insert = ', req.body)
+    logger.info(`insert new product ${JSON.stringify(req.body)}`)
     productsApi.insert(req.body, (err) => {
       if (err) res.status(500).json({error: err})
       else res.send({status: 'success'})
+    })
+  },
+
+  remove (req, res) {
+    const {productId} = req.params
+    logger.info(`remove product by product id: ${productId}`)
+    productsApi.remove(productId, (err, products) => {
+      if (err) res.status(500).json({error: err})
+      else res.status(200).json({data: products})
     })
   }
 }

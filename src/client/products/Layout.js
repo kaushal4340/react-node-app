@@ -7,10 +7,10 @@ class Layout extends React.Component {
       <div className='fluid-container products'>
         <div className='row'>
           {
-            this.props.products.map((product) => {
+            this.props.products.map((product, index) => {
               return (
-                <div className='col-lg-2 col-md-2 col-sm-2'>
-                  <Card product={product} />
+                <div key={index} className='col-lg-2 col-md-2 col-sm-2'>
+                  <Card removeProduct={this.props.removeProduct} product={product} />
                 </div>
               )
             })

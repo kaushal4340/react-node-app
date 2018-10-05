@@ -11,3 +11,15 @@
   width: 50%;
   margin: 0 auto;
 }
+
+.remove-button {
+  position: absolute;
+  bottom: 15px;
+  left: 40px;
+}
+
+.edit-button {
+  position: absolute;
+  bottom: 60px;
+  left: 40px;
+}

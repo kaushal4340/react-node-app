@@ -3,9 +3,15 @@ const router = express.Router()
 const productsRouteHandler = require('./productsRouteHanlder')
 
 router.route('/productlist')
-  .get(productsRouteHandler.read)
+  .get(productsRouteHandler.readAll)
 
 router.route('/addproduct')
   .post(productsRouteHandler.insert)
+
+router.route('/removeProduct/:productId')
+  .delete(productsRouteHandler.remove)
+
+router.route('/product/:productId')
+  .get(productsRouteHandler.read)
 
 module.exports = router

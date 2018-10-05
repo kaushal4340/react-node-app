@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import '../../styles/products.css'
 import Layout from './Layout'
 import fetch from 'isomorphic-fetch'
+import autobind from 'react-autobind'
 
 class ProductsContainer extends Component {
   constructor (props) {
@@ -9,6 +10,7 @@ class ProductsContainer extends Component {
     this.state = {
       products: []
     }
+    autobind(this)
   }
 
   componentDidMount () {
@@ -21,9 +23,26 @@ class ProductsContainer extends Component {
       })
   }
 
+  removeProduct (productId) {
+    const self = this
+    fetch(`http://localhost:3002/api/removeProduct/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        response.json().then(json => {
+          self.setState({ products: json.data })
+        })
+      })
+  }
+
   render () {
     return (
-      <Layout products={this.state.products} />
+      <Layout
+        removeProduct={this.removeProduct}
+        products={this.state.products} />
     )
   }
 }
