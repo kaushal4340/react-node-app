@@ -54,7 +54,7 @@ class ProductsApi {
       this.products = this.products.map(product => {
         if (product.id === id) {
           return {
-            id: productId,
+            id: id,
             productName: model.productName,
             price: model.price,
             manufacturer: model.manufacturer
